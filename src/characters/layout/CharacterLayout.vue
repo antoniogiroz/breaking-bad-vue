@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const myRef = ref(0)
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <h1>Character layout</h1>
+
+  <RouterView />
 </template>
