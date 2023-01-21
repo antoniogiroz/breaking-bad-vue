@@ -1,15 +1,18 @@
 <script setup lang="ts">
+import type { PageLink } from '@/router/links'
 
+const props = defineProps<{
+  title: string
+  links: PageLink[]
+}>()
 </script>
 
 <template>
-  <RouterLink to="/">
-    Home
-  </RouterLink>
-  <RouterLink to="/about">
-    About
-  </RouterLink>
-  <RouterLink to="/characters">
-    Characters
-  </RouterLink>
+  <nav>
+    <h1>{{ props.title }}</h1>
+
+    <RouterLink v-for="link in props.links" :key="link.name" :to="link.path">
+      {{ link.title }}
+    </RouterLink>
+  </nav>
 </template>
