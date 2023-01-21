@@ -6,7 +6,8 @@ import { links } from '@/router/links'
 
 <template>
   <header>
-    <TheNavBar title="Breaking Bad" :links="links" />
+    <h1>Breaking Bad</h1>
+    <TheNavBar :links="links" />
   </header>
 
   <main>
