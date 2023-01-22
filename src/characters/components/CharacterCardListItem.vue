@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { toRef } from 'vue'
+import { useRouter } from 'vue-router'
 import type { Character } from '../domain/character'
 
 const props = defineProps<{
@@ -7,10 +8,16 @@ const props = defineProps<{
 }>()
 
 const character = toRef(props, 'character')
+
+const router = useRouter()
+
+function goToDetail() {
+  router.push({ name: 'character-detail', params: { id: character.value.id } })
+}
 </script>
 
 <template>
-  <div class="character-card">
+  <div class="character-card" @click="goToDetail">
     <img :src="character.image" :alt="character.name">
     <h3>{{ character.name }}</h3>
   </div>
@@ -24,6 +31,7 @@ const character = toRef(props, 'character')
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 img {

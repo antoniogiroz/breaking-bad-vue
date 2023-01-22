@@ -18,8 +18,9 @@ export const characterRoute: RouteRecordRaw = {
     },
     {
       path: ':id',
-      name: 'characters-detail',
+      name: 'character-detail',
       component: () => import('@/characters/pages/CharacterDetail.vue'),
+      props: true,
     },
   ],
 }
