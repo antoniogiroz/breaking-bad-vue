@@ -1,22 +1,15 @@
 <script setup lang="ts">
-import { useQuery } from '@tanstack/vue-query'
-import { characterApi } from '../api'
 import type { Character } from '../domain/character'
 import CharacterCardListItem from './CharacterCardListItem.vue'
 
-const { isLoading, data: characters } = useQuery<Character[]>(
-  ['characters'],
-  characterApi.getAll,
-)
+const props = defineProps<{
+  characters: Character[]
+}>()
 </script>
 
 <template>
-  <div v-if="isLoading">
-    Loading...
-  </div>
-
   <div class="card-list">
-    <CharacterCardListItem v-for="character of characters" :key="character.id" :character="character" />
+    <CharacterCardListItem v-for="character of props.characters" :key="character.id" :character="character" />
   </div>
 </template>
 
