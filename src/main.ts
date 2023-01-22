@@ -9,6 +9,16 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-app.use(VueQueryPlugin)
+
+VueQueryPlugin.install(app, {
+  queryClientConfig: {
+    defaultOptions: {
+      queries: {
+        cacheTime: 1000 * 120,
+        refetchOnReconnect: 'always',
+      },
+    },
+  },
+})
 
 app.mount('#app')

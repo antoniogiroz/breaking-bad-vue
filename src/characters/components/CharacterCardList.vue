@@ -7,10 +7,6 @@ import CharacterCardListItem from './CharacterCardListItem.vue'
 const { isLoading, data: characters } = useQuery<Character[]>(
   ['characters'],
   characterApi.getAll,
-  {
-    cacheTime: 1000 * 1,
-    refetchOnReconnect: 'always',
-  },
 )
 </script>
 
