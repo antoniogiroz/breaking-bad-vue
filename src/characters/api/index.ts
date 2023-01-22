@@ -10,7 +10,6 @@ async function getAll(): Promise<Character[]> {
 
 async function getById(id: string): Promise<Character> {
   const { data } = await apiClient.get<CharacterData>(`/character/${id}`)
-
   return mapCharacterApiDataToCharacter(data)
 }
 

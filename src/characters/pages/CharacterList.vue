@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { useQuery } from '@tanstack/vue-query'
-import { characterApi } from '../api'
 import CharacterCardList from '../components/CharacterCardList.vue'
-import type { Character } from '../domain/character'
+import { useCharacters } from '../composables/use-characters'
 
-const { isLoading, data: characters } = useQuery<Character[]>(
-  ['characters'],
-  characterApi.getAll,
-)
+const { isLoading, characters } = useCharacters()
 </script>
 
 <template>

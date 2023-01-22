@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { useQuery } from '@tanstack/vue-query'
-import { characterApi } from '../api'
-import type { Character } from '../domain/character'
+import { useCharacter } from '../composables/use-character'
 
 const props = defineProps<{
   id: string
 }>()
 
-const { isLoading, data: character } = useQuery<Character>(
-  ['character', props.id],
-  () => characterApi.getById(props.id),
-)
+const { isLoading, character } = useCharacter(props.id)
 </script>
 
 <template>
