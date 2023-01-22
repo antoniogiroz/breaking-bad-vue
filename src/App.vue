@@ -6,7 +6,7 @@ import { links } from '@/router/links'
 
 <template>
   <header>
-    <h1>Breaking Bad</h1>
+    <h1>Rick & Morty</h1>
     <TheNavBar :links="links" />
   </header>
 

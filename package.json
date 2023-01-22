@@ -1,6 +1,6 @@
 {
-  "name": "breaking-bad-vue",
-  "version": "0.0.0",
+  "name": "rick-and-morty-vue",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,8 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@tanstack/vue-query": "^4.22.0",
+    "axios": "^1.2.3",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
