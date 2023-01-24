@@ -1,23 +1,28 @@
 import { useQuery } from '@tanstack/vue-query'
-import { ref } from 'vue'
+import { watchEffect } from 'vue'
+import { storeToRefs } from 'pinia'
 import { characterApi } from '../api'
 import type { Character } from '../domain/character'
-
-const characters = ref<Character[]>([])
+import { useCharacterStore } from '@/store/character.store'
 
 export function useCharacters() {
-  const { isLoading } = useQuery<Character[]>(
+  const characterStore = useCharacterStore()
+
+  const { characters, totalPages, currentPage } = storeToRefs(characterStore)
+
+  const { isLoading, data } = useQuery<Character[]>(
     ['characters'],
     characterApi.getAll,
-    {
-      onSuccess(data) {
-        characters.value = data
-      },
-    },
   )
+
+  watchEffect(() => {
+    characterStore.characters = data.value || []
+  })
 
   return {
     isLoading,
     characters,
+    totalPages,
+    currentPage,
   }
 }
