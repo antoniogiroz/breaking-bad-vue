@@ -2,6 +2,7 @@
 import CharacterCardList from '../components/CharacterCardList.vue'
 import { useCharacters } from '../composables/use-characters'
 import Pagination from '@/shared/components/Pagination.vue'
+import BusyIndicatorPage from '@/shared/components/BusyIndicatorPage.vue'
 
 const { isLoading, characters, totalPages, currentPage, setCurrentPage } = useCharacters()
 </script>
@@ -9,9 +10,7 @@ const { isLoading, characters, totalPages, currentPage, setCurrentPage } = useCh
 <template>
   <h2>Character List</h2>
 
-  <div v-if="isLoading">
-    Loading...
-  </div>
+  <BusyIndicatorPage v-if="isLoading" />
 
   <template v-else>
     <CharacterCardList :characters="characters || []" />
