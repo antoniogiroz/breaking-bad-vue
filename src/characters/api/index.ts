@@ -1,9 +1,13 @@
 import type { Character, CharactersResponse } from '../domain/character'
 import type { ApiAllCharactersResponse, CharacterData } from '@/infrastructure/api-response'
-import { apiClient } from '@/api/base.api'
+import { apiClient } from '@/api/'
 
-async function getAll(): Promise<CharactersResponse> {
-  const { data } = await apiClient.get<ApiAllCharactersResponse>('/character')
+async function getAll(page = 1): Promise<CharactersResponse> {
+  const { data } = await apiClient.get<ApiAllCharactersResponse>('/character', {
+    params: {
+      page,
+    },
+  })
 
   return {
     info: {

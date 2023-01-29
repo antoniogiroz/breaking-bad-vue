@@ -11,8 +11,8 @@ export function useCharacters() {
   const { characters, totalPages, currentPage } = storeToRefs(characterStore)
 
   const { isLoading, data } = useQuery<CharactersResponse>(
-    ['characters'],
-    characterApi.getAll,
+    ['characters?page=', currentPage],
+    () => characterApi.getAll(currentPage.value),
   )
 
   function setCurrentPage(page: number) {
