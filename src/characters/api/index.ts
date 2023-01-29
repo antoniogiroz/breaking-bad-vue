@@ -1,11 +1,17 @@
-import type { Character } from '../domain/character'
+import type { Character, CharactersResponse } from '../domain/character'
 import type { ApiAllCharactersResponse, CharacterData } from '@/infrastructure/api-response'
 import { apiClient } from '@/api/base.api'
 
-async function getAll(): Promise<Character[]> {
+async function getAll(): Promise<CharactersResponse> {
   const { data } = await apiClient.get<ApiAllCharactersResponse>('/character')
 
-  return data.results.map(mapCharacterApiDataToCharacter)
+  return {
+    info: {
+      count: data.info.count,
+      pages: data.info.pages,
+    },
+    characters: data.results.map(mapCharacterApiDataToCharacter),
+  }
 }
 
 async function getById(id: string): Promise<Character> {

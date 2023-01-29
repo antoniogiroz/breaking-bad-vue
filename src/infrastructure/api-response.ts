@@ -1,5 +1,5 @@
 export interface ApiAllCharactersResponse {
-  info: ResponseInfo
+  info: ApiResponseInfo
   results: CharacterData[]
 }
 
@@ -10,20 +10,21 @@ export interface CharacterData {
   species: string
   type: string
   gender: string
-  origin: Origin
-  location: Origin
+  origin: {
+    name: string
+    url: string
+  }
+  location: {
+    name: string
+    url: string
+  }
   image: string
   episode: string[]
   url: string
   created: string
 }
 
-interface Origin {
-  name: string
-  url: string
-}
-
-interface ResponseInfo {
+interface ApiResponseInfo {
   count: number
   pages: number
   next: string

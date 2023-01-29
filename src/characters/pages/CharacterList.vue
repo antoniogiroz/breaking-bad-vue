@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import CharacterCardList from '../components/CharacterCardList.vue'
 import { useCharacters } from '../composables/use-characters'
+import Pagination from '@/shared/components/Pagination.vue'
 
-const { isLoading, characters } = useCharacters()
+const { isLoading, characters, totalPages, currentPage, setCurrentPage } = useCharacters()
 </script>
 
 <template>
@@ -12,5 +13,8 @@ const { isLoading, characters } = useCharacters()
     Loading...
   </div>
 
-  <CharacterCardList v-else :characters="characters || []" />
+  <template v-else>
+    <CharacterCardList :characters="characters || []" />
+    <Pagination :current="currentPage" :total="totalPages" @page-change="setCurrentPage" />
+  </template>
 </template>

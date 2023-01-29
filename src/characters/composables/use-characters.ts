@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/vue-query'
-import { watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import { characterApi } from '../api'
-import type { Character } from '../domain/character'
+import type { CharactersResponse } from '../domain/character'
 import { useCharacterStore } from '@/store/character.store'
 
 export function useCharacters() {
@@ -10,19 +10,25 @@ export function useCharacters() {
 
   const { characters, totalPages, currentPage } = storeToRefs(characterStore)
 
-  const { isLoading, data } = useQuery<Character[]>(
+  const { isLoading, data } = useQuery<CharactersResponse>(
     ['characters'],
     characterApi.getAll,
   )
 
+  function setCurrentPage(page: number) {
+    characterStore.currentPage = page
+  }
+
   watchEffect(() => {
-    characterStore.characters = data.value || []
+    characterStore.characters = data.value?.characters || []
+    totalPages.value = data.value?.info.pages || 0
   })
 
   return {
     isLoading,
     characters,
     totalPages,
-    currentPage,
+    currentPage: computed(() => currentPage.value),
+    setCurrentPage,
   }
 }

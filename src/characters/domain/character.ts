@@ -1,3 +1,10 @@
+import type { ResponseInfo } from '@/shared/domain/response-info'
+
+export interface CharactersResponse {
+  info: ResponseInfo
+  characters: Character[]
+}
+
 export interface Character {
   id: number
   name: string
