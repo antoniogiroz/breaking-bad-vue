@@ -15,7 +15,7 @@ export function useCharacter(id: MaybeRef<string>) {
 
   watchEffect(() => {
     if (!isLoading.value && isError.value)
-      router.replace({ name: 'characters-list' })
+      router.replace({ name: 'characters' })
   })
 
   return {

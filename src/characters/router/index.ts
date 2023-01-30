@@ -2,24 +2,23 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const characterRoute: RouteRecordRaw = {
   path: '/characters',
-  name: 'characters',
-  redirect: { name: 'characters-list' },
+  redirect: { name: 'characters' },
   component: () => import('@/characters/layout/CharacterLayout.vue'),
   children: [
     {
       path: 'list',
-      name: 'characters-list',
-      component: () => import('@/characters/pages/CharacterList.vue'),
+      name: 'characters',
+      component: () => import('@/characters/pages/CharactersPage.vue'),
     },
     {
       path: 'search',
       name: 'characters-search',
-      component: () => import('@/characters/pages/CharacterSearch.vue'),
+      component: () => import('@/characters/pages/CharactersSearchPage.vue'),
     },
     {
       path: ':id',
-      name: 'character-detail',
-      component: () => import('@/characters/pages/CharacterDetail.vue'),
+      name: 'character',
+      component: () => import('@/characters/pages/CharacterPage.vue'),
       props: true,
     },
   ],

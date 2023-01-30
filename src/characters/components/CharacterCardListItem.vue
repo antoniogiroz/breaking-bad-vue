@@ -12,7 +12,7 @@ const character = toRef(props, 'character')
 const router = useRouter()
 
 function goToDetail() {
-  router.push({ name: 'character-detail', params: { id: character.value.id } })
+  router.push({ name: 'character', params: { id: character.value.id } })
 }
 </script>
 
