@@ -20,4 +20,9 @@ export const links: PageLink[] = [
     path: '/characters',
     title: 'Characters',
   },
+  {
+    name: 'clients',
+    path: '/clients',
+    title: 'Clients',
+  },
 ]

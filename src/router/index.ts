@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/shared/pages/HomePage.vue'
 import { characterRoute } from '@/characters/router'
+import { clientRoute } from '@/clients/router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,11 @@ const router = createRouter({
     {
       ...characterRoute,
       path: '/characters',
+    },
+
+    {
+      ...clientRoute,
+      path: '/clients',
     },
 
     {
