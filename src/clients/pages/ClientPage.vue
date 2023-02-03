@@ -5,7 +5,7 @@ const props = defineProps<{
   id: string
 }>()
 
-const { isLoading, client } = useClient(+props.id)
+const { isLoading, client, updateClient, updatingClient } = useClient(+props.id)
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const { isLoading, client } = useClient(+props.id)
     Loading...
   </div>
 
-  <form v-else-if="client" @submit.prevent>
+  <form v-else-if="client" @submit.prevent="updateClient(client!)">
     <label>
       Name
       <input v-model="client.name" type="text">
@@ -29,7 +29,9 @@ const { isLoading, client } = useClient(+props.id)
       <input v-model="client.phone" type="tel">
     </label>
 
-    <button>Save</button>
+    <button :disabled="updatingClient">
+      Save
+    </button>
   </form>
 
   <div v-else>
