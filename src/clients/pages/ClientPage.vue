@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useClient } from '../composables/use-client'
 
 const props = defineProps<{
@@ -13,7 +15,7 @@ const { isLoading, client, updateClient, updatingClient } = useClient(+props.id)
     Loading...
   </div>
 
-  <form v-else-if="client" @submit.prevent="updateClient(client!)">
+  <form v-if="client" @submit.prevent="updateClient(client!)">
     <label>
       Name
       <input v-model="client.name" type="text">
@@ -33,8 +35,4 @@ const { isLoading, client, updateClient, updatingClient } = useClient(+props.id)
       Save
     </button>
   </form>
-
-  <div v-else>
-    Client not found
-  </div>
 </template>
